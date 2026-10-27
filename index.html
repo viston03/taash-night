@@ -1,0 +1,657 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Taash Night Invite</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Rozha+One&family=Mukta:wght@400;600;700&display=swap">
+<style>
+/* Layout: one narrow column under a marigold toran and fairy lights — a face-down deck you light up, then a hand of ivory playing cards dealt down the page. */
+:root{
+  --night:#2a0c08;        /* page ground: deep maroon, lit warm */
+  --night-2:#4a1510;      /* card backs, raised dark surfaces */
+  --paper:#fff5df;        /* card face */
+  --ink:#3d130b;          /* text on card */
+  --muted:#8c5a40;        /* secondary text on card */
+  --marigold:#ff9a12;     /* accent: flame, headings on dark */
+  --sindoor:#c8102e;      /* red suits, CTA */
+  --gold:#ffc83d;         /* lights, hairlines, sparkle */
+  --on-night:#fff1d4;     /* text on dark */
+  --on-night-dim:#e8c08a;
+  --display:"Rozha One", "Playfair Display", Georgia, serif;
+  --body:"Mukta", "Segoe UI", system-ui, sans-serif;
+  color-scheme: dark;
+}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+html{scroll-behavior:smooth; overflow-x:clip}
+body{
+  background:
+    radial-gradient(ellipse 130% 50% at 50% 0%, rgba(255,170,40,.28) 0%, transparent 65%),
+    radial-gradient(ellipse 90% 40% at 50% 100%, rgba(200,16,46,.25) 0%, transparent 70%),
+    var(--night);
+  position:relative;
+  color:var(--on-night);
+  font-family:var(--body);
+  font-size:16px;
+  line-height:1.5;
+  min-height:100vh;
+  padding-left:max(16px, env(safe-area-inset-left, 0px));
+  padding-right:max(16px, env(safe-area-inset-right, 0px));
+  padding-block:150px 64px;
+  overflow-x:hidden;
+}
+body::after{ /* soft golden bokeh, like out-of-focus diya lights */
+  content:""; position:fixed; inset:0; pointer-events:none; z-index:0;
+  background-image:
+    radial-gradient(circle at 8% 30%, rgba(255,200,61,.22) 0 18px, transparent 40px),
+    radial-gradient(circle at 92% 22%, rgba(255,154,18,.20) 0 26px, transparent 54px),
+    radial-gradient(circle at 85% 70%, rgba(255,200,61,.16) 0 14px, transparent 34px),
+    radial-gradient(circle at 12% 82%, rgba(255,154,18,.18) 0 22px, transparent 48px),
+    radial-gradient(circle at 50% 55%, rgba(255,200,61,.08) 0 30px, transparent 70px),
+    radial-gradient(circle at 70% 95%, rgba(255,200,61,.16) 0 12px, transparent 30px);
+}
+#toran{position:absolute; top:0; left:0; width:100%; height:150px; pointer-events:none; z-index:2; display:block}
+main{position:relative; z-index:1; max-width:420px; margin:0 auto; display:flex; flex-direction:column; gap:28px}
+
+/* ---------- Intro ---------- */
+.intro{text-align:center; display:flex; flex-direction:column; align-items:center; gap:10px}
+.eyebrow{font-size:12px; letter-spacing:.24em; text-transform:uppercase; color:var(--on-night-dim); font-weight:600}
+h1{
+  font-family:var(--display); font-weight:400; color:var(--gold);
+  text-shadow:0 0 24px rgba(255,170,40,.55);
+  font-size:clamp(34px, 10vw, 46px); line-height:1.05; margin:4px 0 0; text-wrap:balance;
+}
+.tap{color:var(--on-night-dim); margin:0}
+.stage{position:relative; width:100%; height:300px; margin-top:12px; display:grid; place-items:center}
+.back{
+  position:absolute; width:190px; height:266px; border-radius:16px;
+  background:
+    repeating-linear-gradient(45deg, transparent 0 10px, rgba(255,200,61,.10) 10px 11px),
+    repeating-linear-gradient(-45deg, transparent 0 10px, rgba(255,200,61,.10) 10px 11px),
+    var(--night-2);
+  border:1.5px solid rgba(255,154,18,.55);
+  box-shadow:0 20px 40px rgba(0,0,0,.45), inset 0 0 0 8px var(--night-2), inset 0 0 0 9px rgba(255,200,61,.35);
+  transition:transform .7s cubic-bezier(.2,.8,.2,1), opacity .6s;
+}
+.back:nth-child(1){transform:rotate(-9deg) translateX(-14px)}
+.back:nth-child(2){transform:rotate(4deg) translateX(10px)}
+.back:nth-child(3){transform:rotate(-1deg)}
+.dealt .back:nth-child(1){transform:translate(-160px,-40px) rotate(-38deg); opacity:0}
+.dealt .back:nth-child(2){transform:translate(160px,-40px) rotate(38deg); opacity:0}
+.dealt .back:nth-child(3){transform:translateY(-120px) rotate(-6deg); opacity:0}
+
+.diya{
+  position:relative; z-index:2; margin-top:90px;
+  background:none; border:0; padding:8px 14px; cursor:pointer; border-radius:999px;
+  display:flex; flex-direction:column; align-items:center;
+}
+.diya:focus-visible{outline:2px solid var(--gold); outline-offset:4px}
+.diya svg{width:120px; height:auto; display:block; overflow:visible}
+.glow{
+  position:absolute; left:50%; top:4px; width:120px; height:120px; translate:-50% 0;
+  background:radial-gradient(circle, rgba(255,160,40,.45), transparent 65%);
+  border-radius:50%; pointer-events:none; opacity:.35; transition:opacity .5s, scale .5s;
+}
+.flame{transform-origin:60px 46px; transform:scale(.55); opacity:.55; transition:transform .5s, opacity .5s}
+.dealt .flame{transform:scale(1); opacity:1; animation:flicker 1.6s ease-in-out infinite alternate}
+.dealt .glow{opacity:1; scale:1.5}
+.diya-label{font-size:13px; font-weight:600; color:var(--gold); margin-top:4px; letter-spacing:.04em}
+.dealt .diya-label{opacity:0}
+@keyframes flicker{0%{transform:scale(1) rotate(-2deg)}50%{transform:scale(1.06,.96) rotate(1.5deg)}100%{transform:scale(.97,1.05) rotate(-1deg)}}
+
+.scroll-hint{display:flex; align-items:center; justify-content:center; gap:8px; color:var(--on-night-dim); font-size:14px; margin:0}
+.scroll-hint::before{content:""; width:7px; height:7px; border-radius:50%; background:var(--marigold)}
+
+/* ---------- Playing cards ---------- */
+.hand{display:flex; flex-direction:column; gap:28px}
+.card{
+  position:relative; background:var(--paper); color:var(--ink);
+  border-radius:20px; padding:64px 26px 60px;
+  box-shadow:0 22px 50px rgba(0,0,0,.4);
+  outline:1.5px solid rgba(214,150,20,.85); outline-offset:-9px;
+}
+.dealing .card{animation:deal .7s cubic-bezier(.2,.8,.2,1) both}
+.dealing .card:nth-child(2){animation-delay:.08s}
+.dealing .card:nth-child(3){animation-delay:.16s}
+@keyframes deal{from{transform:translateY(60px) rotate(-4deg); opacity:0}to{transform:none; opacity:1}}
+.pip{position:absolute; display:flex; flex-direction:column; align-items:center; line-height:.9; font-family:var(--display); font-size:24px}
+.pip small{font-size:18px}
+.pip.tl{top:16px; left:18px}
+.pip.br{bottom:16px; right:18px; transform:rotate(180deg)}
+.red{color:var(--sindoor)} .blk{color:var(--ink)}
+
+.card h2{font-family:var(--display); font-weight:400; font-size:34px; line-height:1.05; margin:0 0 18px; text-wrap:balance}
+.card .kicker{font-size:12px; letter-spacing:.24em; text-transform:uppercase; color:var(--muted); font-weight:600; text-align:center; margin:0 0 10px}
+.card p{margin:0}
+
+.ace{text-align:center; padding-block:64px 60px}
+.ace h2{font-size:clamp(38px, 11vw, 48px); margin-bottom:6px}
+.ace .hi{color:var(--marigold); display:block}
+.ace .lede{color:var(--muted); max-width:30ch; margin:14px auto 0}
+.ace .by{margin-top:22px; font-weight:600; font-size:14px}
+
+.facts{display:flex; flex-direction:column}
+.fact{padding:14px 0; border-bottom:1px dashed rgba(140,90,64,.4); display:flex; flex-direction:column; gap:2px}
+.fact:last-child{border-bottom:0}
+.label{font-size:12px; letter-spacing:.2em; text-transform:uppercase; color:var(--muted); font-weight:700}
+.fact strong{font-size:20px; font-weight:700}
+.fact span{color:var(--muted); font-size:15px}
+.pill-link{
+  display:inline-flex; align-self:flex-start; margin-top:18px; padding:10px 20px; border-radius:999px;
+  border:2px solid var(--ink); color:var(--ink); font-weight:700; text-decoration:none;
+}
+.pill-link:hover{background:var(--ink); color:var(--paper)}
+.pill-link:focus-visible{outline:2px solid var(--marigold); outline-offset:3px}
+
+.count{display:grid; grid-template-columns:repeat(4,1fr); gap:8px; margin:6px 0 16px}
+.unit{background:var(--night-2); color:var(--marigold); border-radius:12px; padding:12px 4px 8px; text-align:center}
+.unit b{display:block; font-family:var(--display); font-weight:400; font-size:30px; line-height:1; font-variant-numeric:tabular-nums}
+.unit i{font-style:normal; font-size:11px; letter-spacing:.16em; text-transform:uppercase; color:var(--on-night-dim)}
+.count-note{text-align:center; color:var(--muted)}
+
+.rules{list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:14px}
+.rules li{display:grid; grid-template-columns:28px 1fr; gap:6px}
+.rules .n{font-family:var(--display); font-size:24px; color:var(--sindoor); line-height:1.1}
+.rules strong{font-size:18px; display:block}
+.rules span{color:var(--muted); font-size:15px}
+.fine{margin-top:18px; background:var(--sindoor); color:#fff; border-radius:12px; padding:12px 16px; font-weight:600}
+
+.field{display:flex; flex-direction:column; gap:8px}
+input[type=text]{
+  font:inherit; font-size:18px; color:var(--ink); background:#fff;
+  border:2px solid rgba(140,90,64,.35); border-radius:12px; padding:12px 14px; width:100%;
+  color-scheme:light;
+}
+input[type=text]:focus{outline:none; border-color:var(--marigold); box-shadow:0 0 0 3px rgba(255,154,18,.25)}
+input::placeholder{color:#a99bb0}
+.sub-h{font-family:var(--display); font-weight:400; font-size:26px; margin:22px 0 10px}
+.chips{display:flex; flex-wrap:wrap; gap:8px}
+.chip{
+  font:inherit; font-weight:600; color:var(--ink); background:#fff; cursor:pointer;
+  border:2px solid rgba(140,90,64,.35); border-radius:999px; padding:8px 18px;
+}
+.chip[aria-pressed=true]{background:var(--night-2); border-color:var(--night-2); color:var(--marigold)}
+.chip:focus-visible,.role:focus-visible{outline:2px solid var(--marigold); outline-offset:2px}
+.reply{min-height:1.5em; margin-top:14px; color:var(--sindoor); font-weight:700}
+
+.roles{display:grid; grid-template-columns:1fr 1fr; gap:10px}
+.role{
+  font:inherit; text-align:left; cursor:pointer; color:var(--ink); background:#fff;
+  border:2px solid rgba(140,90,64,.3); border-radius:14px; padding:12px; display:flex; flex-direction:column; gap:2px; min-width:0;
+}
+.role b{font-size:16px; line-height:1.2}
+.role span{font-size:13px; color:var(--muted); line-height:1.3}
+.role[aria-pressed=true]{background:var(--night-2); border-color:var(--night-2)}
+.role[aria-pressed=true] b{color:var(--marigold)}
+.role[aria-pressed=true] span{color:var(--on-night-dim)}
+.roles-off{opacity:.4; pointer-events:none}
+
+.suggest{margin-top:10px; font-size:16px!important; padding:10px 14px!important; border-style:dashed!important}
+.sr{position:absolute; width:1px; height:1px; overflow:hidden; clip:rect(0 0 0 0); white-space:nowrap}
+.jokes{display:flex; flex-direction:column}
+.joke{padding:12px 0; border-bottom:1px dashed rgba(140,90,64,.4)}
+.joke:last-child{border-bottom:0}
+.joke .line{font-family:var(--display); font-size:20px; color:var(--sindoor); line-height:1.2; margin-bottom:2px}
+.joke p:not(.line){color:var(--ink)}
+.card > p + p{margin-top:12px}
+.surprise{font-family:var(--display); font-size:24px; color:var(--marigold); line-height:1.2}
+.hint{color:var(--muted); font-size:15px}
+.optional.off{opacity:.4; pointer-events:none}
+.pic-nudge{margin-top:14px; font-weight:600}
+.picture{margin-top:10px; font-family:var(--display); color:var(--marigold); font-size:20px}
+
+.cta-wrap{display:flex; flex-direction:column; gap:10px; text-align:center}
+.cta{
+  display:block; text-decoration:none; background:var(--sindoor); color:#fff; font-weight:700; font-size:18px;
+  border-radius:999px; padding:16px 20px; box-shadow:0 10px 30px rgba(200,16,46,.35);
+}
+.cta:focus-visible{outline:2px solid var(--gold); outline-offset:3px}
+.cta-note{color:var(--on-night-dim); font-size:14px; margin:0}
+.err{color:var(--gold); font-weight:600; margin:0; min-height:1.5em}
+
+/* generated card */
+.yours{
+  background:var(--night-2); color:var(--on-night); border-radius:20px; padding:44px 26px 40px; text-align:center;
+  outline:1.5px solid var(--marigold); outline-offset:-9px; position:relative;
+  box-shadow:0 22px 50px rgba(0,0,0,.45);
+}
+.yours .pip{color:var(--marigold)}
+.yours .kicker{color:var(--on-night-dim)}
+.initial{font-family:var(--display); font-size:72px; line-height:1; color:var(--marigold); margin:8px 0 14px}
+.yours h3{font-family:var(--display); font-weight:400; font-size:32px; margin:4px 0 10px; line-height:1.1}
+.yours .meta{border-top:1px dashed rgba(255,200,61,.45); margin-top:18px; padding-top:14px; color:var(--gold); font-size:15px}
+.copybox{margin-top:16px; text-align:left; background:rgba(255,255,255,.06); border-radius:12px; padding:12px 14px; font-size:14px; color:var(--on-night-dim); white-space:pre-wrap; user-select:all}
+.copy-btn{margin-top:10px; font:inherit; font-weight:600; background:none; color:var(--gold); border:1.5px solid var(--gold); border-radius:999px; padding:6px 16px; cursor:pointer}
+
+@media (prefers-reduced-motion: reduce){
+  *,*::before,*::after{animation:none!important; transition:none!important}
+  html{scroll-behavior:auto}
+}
+</style>
+
+<canvas id="toran" aria-hidden="true"></canvas>
+<main id="top">
+  <section class="intro" aria-label="Invitation">
+    <div class="eyebrow">Swar &amp; Dhwani present</div>
+    <h1>Diwali ki raat, taash ke saath</h1>
+    <p class="tap" id="tapText">Tap the diya to deal your hand</p>
+    <div class="stage" id="stage">
+      <div class="back" aria-hidden="true"></div>
+      <div class="back" aria-hidden="true"></div>
+      <div class="back" aria-hidden="true"></div>
+      <button class="diya" id="diya" type="button" aria-label="Light the diya and open the invite">
+        <span class="glow"></span>
+        <svg viewBox="0 0 120 90" aria-hidden="true">
+          <g class="flame">
+            <path d="M60 4 C70 20 74 30 70 40 C67 47 53 47 50 40 C46 30 50 20 60 4Z" fill="#ff8a1f"/>
+            <path d="M60 18 C65 27 66 33 64 38 C62 42 58 42 56 38 C54 33 55 27 60 18Z" fill="#ffe08a"/>
+          </g>
+          <path d="M8 48 C20 46 100 46 112 48 C110 70 86 84 60 84 C34 84 10 70 8 48Z" fill="#c2541c"/>
+          <path d="M8 48 C20 46 100 46 112 48 C100 54 20 54 8 48Z" fill="#8a3311"/>
+          <path d="M22 62 h76" stroke="#f5c35b" stroke-width="2" stroke-dasharray="2 6" stroke-linecap="round"/>
+          <circle cx="60" cy="72" r="3" fill="#f5c35b"/>
+        </svg>
+        <span class="diya-label">Tap me</span>
+      </button>
+    </div>
+    <p class="scroll-hint" id="scrollHint" hidden>Scroll to see your hand</p>
+  </section>
+
+  <div class="hand" id="hand" hidden>
+    <!-- A: the hook -->
+    <article class="card ace">
+      <div class="pip tl red">A<small>♦</small></div>
+      <p class="kicker">Diwali edition</p>
+      <h2>Iss Diwali, <span class="hi">taash khulega</span></h2>
+      <p class="lede">Taash, games, Bollywood gaane, thumke, photos and zero reasons to leave early.</p>
+      <p class="by">Hosted by Swar &amp; Dhwani</p>
+      <div class="pip br red">A<small>♦</small></div>
+    </article>
+
+    <!-- K: the plan -->
+    <article class="card">
+      <div class="pip tl blk">K<small>♠</small></div>
+      <h2>The plan</h2>
+      <div class="facts">
+        <div class="fact"><span class="label">When</span><strong>Saturday, 7 November</strong><span>6 pm sharp. Indian Standard Time does not apply in Canada. We go all night long.</span></div>
+        <div class="fact"><span class="label">Where</span><strong>Our place ♥</strong><span>Address on WhatsApp once you say pakka.</span></div>
+        <div class="fact"><span class="label">What's on</span><strong>Taash, games, dance &amp; gaana</strong><span>Teen patti, fun games, a Bollywood dance floor, singing and a lot of photos.</span></div>
+        <div class="fact"><span class="label">Dress code</span><strong>Traditional. No exceptions.</strong><span>It's November in Canada, so bring a jacket over that kurta.</span></div>
+      </div>
+      <a class="pill-link" id="gcal" href="#" target="_blank" rel="noopener">Add to Google Calendar</a>
+      <div class="pip br blk">K<small>♠</small></div>
+    </article>
+
+    <!-- Q: countdown -->
+    <article class="card">
+      <div class="pip tl red">Q<small>♥</small></div>
+      <h2 style="text-align:center">Taash Night starts in</h2>
+      <div class="count" id="count" aria-live="off">
+        <div class="unit"><b id="cd-d">--</b><i>Days</i></div>
+        <div class="unit"><b id="cd-h">--</b><i>Hrs</i></div>
+        <div class="unit"><b id="cd-m">--</b><i>Min</i></div>
+        <div class="unit"><b id="cd-s">--</b><i>Sec</i></div>
+      </div>
+      <p class="count-note" id="countNote">Saturday, 7 November · 6 pm</p>
+      <div class="pip br red">Q<small>♥</small></div>
+    </article>
+
+    <!-- J: rulebook -->
+    <article class="card">
+      <div class="pip tl blk">J<small>♣</small></div>
+      <h2>The rulebook</h2>
+      <ol class="rules">
+        <li><span class="n">1</span><div><strong>Traditional is mandatory.</strong><span>No entry without it. Kurta, saree, lehenga, sherwani. Dress up!</span></div></li>
+        <li><span class="n">2</span><div><strong>Phones down during games.</strong><span>Photos allowed. Scrolling isn't.</span></div></li>
+        <li><span class="n">3</span><div><strong>Everyone dances. Everyone sings.</strong><span>Sitting out is not a personality.</span></div></li>
+        <li><span class="n">4</span><div><strong>Send your childhood photo.</strong><span>The funnier, the better. More on that below.</span></div></li>
+      </ol>
+      <p class="fine">Rule-breakers will be punished. The sentence is decided on the spot, in front of everyone.</p>
+      <div class="pip br blk">J<small>♣</small></div>
+    </article>
+
+    <!-- 10: filmy jokes -->
+    <article class="card">
+      <div class="pip tl red">10<small>♥</small></div>
+      <h2>Filmy gyaan</h2>
+      <div class="jokes">
+        <div class="joke"><p class="line">"Kitne aadmi the?"</p><p>Sardar, jitne RSVP karenge, utne. So RSVP karo.</p></div>
+        <div class="joke"><p class="line">"Mogambo khush hua."</p><p>Mogambo will only be khush if you arrive by 6 pm. Not 6:15. Not "bas nikal raha hoon."</p></div>
+        <div class="joke"><p class="line">"Abhi toh party shuru hui hai."</p><p>Neend aa rahi hai at 10 pm? Not allowed. Ek Thums Up maaro, this one goes all night long.</p></div>
+      </div>
+      <div class="pip br red">10<small>♥</small></div>
+    </article>
+
+    <!-- 9: RSVP -->
+    <article class="card">
+      <div class="pip tl red">9<small>♦</small></div>
+      <div class="field">
+        <label class="sub-h" for="guestName" style="margin-top:0">Ab yeh batao, naam?</label>
+        <input type="text" id="guestName" placeholder="Your name" autocomplete="given-name" maxlength="40">
+      </div>
+      <h3 class="sub-h">Coming na?</h3>
+      <div class="chips" id="coming" role="group" aria-label="Are you coming?">
+        <button class="chip" type="button" data-v="Pakka" data-r="Diya jal gaya. See you there." aria-pressed="false">Pakka</button>
+        <button class="chip" type="button" data-v="Shayad" data-r="We'll keep a seat warm. Decide soon." aria-pressed="false">Shayad</button>
+        <button class="chip" type="button" data-v="Iss baar nahi" data-r="Dil toot gaya. Agli baar pakka?" aria-pressed="false">Iss baar nahi</button>
+      </div>
+      <p class="reply" id="comingReply" aria-live="polite"></p>
+      <div class="pip br red">9<small>♦</small></div>
+    </article>
+
+    <!-- 8: crew roles -->
+    <article class="card optional">
+      <div class="pip tl blk">8<small>♠</small></div>
+      <h2>Every party needs a crew. Pick yours.</h2>
+      <div class="roles" id="roles" role="group" aria-label="Pick your crew role">
+        <button class="role" type="button" aria-pressed="false" data-r="DJ Saab"><b>DJ Saab</b><span>Playlist in charge</span></button>
+        <button class="role" type="button" aria-pressed="false" data-r="Antakshari Captain"><b>Antakshari Captain</b><span>Leads the singing</span></button>
+        <button class="role" type="button" aria-pressed="false" data-r="Dance Floor Starter"><b>Dance Floor Starter</b><span>First thumka of the night</span></button>
+        <button class="role" type="button" aria-pressed="false" data-r="Game Master"><b>Game Master</b><span>Deals and settles disputes</span></button>
+        <button class="role" type="button" aria-pressed="false" data-r="Paparazzi"><b>Paparazzi</b><span>Captures the night</span></button>
+        <button class="role" type="button" aria-pressed="false" data-r="Chakna Champion"><b>Chakna Champion</b><span>Brings one snack for the gang</span></button>
+        <button class="role" type="button" aria-pressed="false" data-r="Bartender"><b>Bartender</b><span>Mixes the drinks</span></button>
+        <button class="role" type="button" aria-pressed="false" data-r="Chief Guest"><b>Chief Guest</b><span>Here purely to vibe</span></button>
+      </div>
+      <p class="reply" id="roleReply" aria-live="polite"></p>
+      <div class="pip br blk">8<small>♠</small></div>
+    </article>
+
+    <!-- 7: drinks vote -->
+    <article class="card optional">
+      <div class="pip tl red">7<small>♦</small></div>
+      <h2>Vote for the drinks</h2>
+      <p class="hint" style="margin:-8px 0 16px">Vote from either list or both, and suggest your own if it's missing.</p>
+      <p class="label">With alcohol</p>
+      <div class="chips" id="drinkA" role="group" aria-label="Alcoholic drink vote">
+        <button class="chip" type="button" aria-pressed="false" data-v="Red wine">Red wine</button>
+        <button class="chip" type="button" aria-pressed="false" data-v="White wine">White wine</button>
+        <button class="chip" type="button" aria-pressed="false" data-v="Whisky">Whisky</button>
+        <button class="chip" type="button" aria-pressed="false" data-v="Rum &amp; Coke">Rum &amp; Coke</button>
+        <button class="chip" type="button" aria-pressed="false" data-v="Vodka cocktails">Vodka cocktails</button>
+      </div>
+      <label class="sr" for="suggestA">Suggest a drink with alcohol</label>
+      <input type="text" id="suggestA" class="suggest" placeholder="Your suggestion with alcohol" maxlength="40">
+      <p class="label" style="margin-top:20px">Without alcohol</p>
+      <div class="chips" id="drinkN" role="group" aria-label="Non-alcoholic drink vote">
+        <button class="chip" type="button" aria-pressed="false" data-v="Coke">Coke</button>
+        <button class="chip" type="button" aria-pressed="false" data-v="Coke Zero">Coke Zero</button>
+        <button class="chip" type="button" aria-pressed="false" data-v="Sprite">Sprite</button>
+        <button class="chip" type="button" aria-pressed="false" data-v="Ginger ale">Ginger ale</button>
+        <button class="chip" type="button" aria-pressed="false" data-v="Thums Up">Thums Up</button>
+        <button class="chip" type="button" aria-pressed="false" data-v="Iced tea">Iced tea</button>
+        <button class="chip" type="button" aria-pressed="false" data-v="Mocktails">Mocktails</button>
+      </div>
+      <label class="sr" for="suggestN">Suggest a drink without alcohol</label>
+      <input type="text" id="suggestN" class="suggest" placeholder="Your suggestion without alcohol" maxlength="40">
+      <p class="reply" id="drinkReply" aria-live="polite"></p>
+      <div class="pip br red">7<small>♦</small></div>
+    </article>
+
+    <!-- 6: childhood photo -->
+    <article class="card optional">
+      <div class="pip tl blk">6<small>♣</small></div>
+      <h2>Send your childhood photo</h2>
+      <p>Send us a childhood photo of yourself on WhatsApp. Funny ones are strongly preferred: the bad haircut, the school play costume, the crying-at-a-wedding shot.</p>
+      <p class="surprise">A surprise awaits on the night.</p>
+      <p class="hint">Send it in the same chat right after your RSVP.</p>
+      <div class="pip br blk">6<small>♣</small></div>
+    </article>
+
+    <div class="cta-wrap">
+      <a class="cta" id="cta" href="https://wa.me/" target="_blank" rel="noopener">Deal me in on WhatsApp</a>
+      <p class="err" id="err" aria-live="polite"></p>
+      <p class="cta-note">Opens WhatsApp with your RSVP ready. Hit send, then send your childhood photo in the same chat.</p>
+    </div>
+
+    <article class="yours" id="yours" hidden>
+      <div class="pip tl">★</div>
+      <p class="kicker">Your card</p>
+      <div class="initial" id="yInitial">R</div>
+      <p class="kicker" id="yRoleLabel">Crew role</p>
+      <h3 id="yRole">Game Master</h3>
+      <p id="yLine">Dealt in. Iss Diwali, taash khulega.</p>
+      <p class="meta">Taash Night · Sat 7 Nov · 6 pm</p>
+      <p class="pic-nudge" id="picNudge">Next: send your funniest childhood photo in the same chat. 📸</p>
+      <p class="picture">Picture abhi baaki hai, mere dost.</p>
+      <div class="copybox" id="msgText"></div>
+      <button class="copy-btn" id="copyBtn" type="button">Copy RSVP message</button>
+      <div class="pip br">★</div>
+    </article>
+  </div>
+</main>
+
+<script>
+/* ---- Edit these ---- */
+const PARTY = {
+  title: "Taash Night",
+  start: "2026-11-07T18:00:00-05:00",   // Eastern time (EST)
+  end:   "2026-11-07T23:59:00-05:00",
+  location: "Swar & Dhwani's place",
+  whatsapp: ""   // host number with country code, digits only, e.g. "14165551234". Empty = guest picks the chat.
+};
+
+const $ = id => document.getElementById(id);
+const body = document.body;
+
+/* Deal */
+function deal(){
+  if (body.classList.contains("dealt")) return;
+  body.classList.add("dealt");
+  $("tapText").textContent = "Diya jal gaya. Your hand is ready.";
+  $("scrollHint").hidden = false;
+  const hand = $("hand");
+  hand.hidden = false;
+  hand.classList.add("dealing");
+  setTimeout(() => hand.firstElementChild.scrollIntoView({behavior:"smooth", block:"start"}), 650);
+}
+$("diya").addEventListener("click", deal);
+
+/* Google Calendar */
+const gfmt = iso => new Date(iso).toISOString().replace(/[-:]/g,"").replace(/\.\d{3}/,"");
+$("gcal").href = "https://calendar.google.com/calendar/render?action=TEMPLATE"
+  + "&text=" + encodeURIComponent(PARTY.title + ": Diwali ki raat, taash ke saath")
+  + "&dates=" + gfmt(PARTY.start) + "/" + gfmt(PARTY.end)
+  + "&details=" + encodeURIComponent("Taash, fun games, Bollywood dance and singing, photos. Traditional wear is mandatory, no entry without it. Rule-breakers will be punished. Send your funniest childhood photo on WhatsApp beforehand.")
+  + "&location=" + encodeURIComponent(PARTY.location);
+
+/* Countdown */
+const startMs = new Date(PARTY.start).getTime();
+const pad = n => String(n).padStart(2,"0");
+function tick(){
+  let s = Math.max(0, Math.floor((startMs - Date.now())/1000));
+  if (s === 0){ $("countNote").textContent = "Cards are on the table. Come in!"; }
+  $("cd-d").textContent = Math.floor(s/86400); s %= 86400;
+  $("cd-h").textContent = pad(Math.floor(s/3600)); s %= 3600;
+  $("cd-m").textContent = pad(Math.floor(s/60));
+  $("cd-s").textContent = pad(s%60);
+}
+tick(); setInterval(tick, 1000);
+
+/* RSVP state */
+let coming = "", role = "";
+document.querySelectorAll("#coming .chip").forEach(b => b.addEventListener("click", () => {
+  document.querySelectorAll("#coming .chip").forEach(x => x.setAttribute("aria-pressed","false"));
+  b.setAttribute("aria-pressed","true");
+  coming = b.dataset.v;
+  $("comingReply").textContent = b.dataset.r;
+  document.querySelectorAll(".optional").forEach(c => c.classList.toggle("off", coming === "Iss baar nahi"));
+  update();
+}));
+let drinkA = "", drinkN = "";
+function drinkGroup(id, set){
+  document.querySelectorAll("#" + id + " .chip").forEach(b => b.addEventListener("click", () => {
+    document.querySelectorAll("#" + id + " .chip").forEach(x => x.setAttribute("aria-pressed","false"));
+    b.setAttribute("aria-pressed","true");
+    set(b.dataset.v);
+    $("drinkReply").textContent = "Vote counted. Cheers!";
+    update();
+  }));
+}
+drinkGroup("drinkA", v => drinkA = v);
+drinkGroup("drinkN", v => drinkN = v);
+document.querySelectorAll("#roles .role").forEach(b => b.addEventListener("click", () => {
+  document.querySelectorAll("#roles .role").forEach(x => x.setAttribute("aria-pressed","false"));
+  b.setAttribute("aria-pressed","true");
+  role = b.dataset.r;
+  $("roleReply").textContent = "Power suits you. Use it wisely.";
+  update();
+}));
+$("guestName").addEventListener("input", update);
+["suggestA","suggestN"].forEach(id => $(id).addEventListener("input", update));
+const sugA = () => $("suggestA").value.trim(), sugN = () => $("suggestN").value.trim();
+
+function message(){
+  const name = $("guestName").value.trim();
+  let m = "TAASH NIGHT RSVP 🪔\nName: " + name + "\nComing: " + coming;
+  if (coming !== "Iss baar nahi"){
+    m += "\nCrew role: " + role;
+    const votes = [drinkA, drinkN].filter(Boolean).join(" + ");
+    if (votes) m += "\nDrink vote: " + votes;
+    if (sugA()) m += "\nSuggestion (alcohol): " + sugA();
+    if (sugN()) m += "\nSuggestion (no alcohol): " + sugN();
+    m += "\nChildhood photo: sending next 📸";
+  }
+  return m;
+}
+function problem(){
+  if (!$("guestName").value.trim()) return "Naam toh batao first.";
+  if (!coming) return "Pick Pakka, Shayad or Iss baar nahi.";
+  if (coming !== "Iss baar nahi"){
+    if (!role) return "Pick a crew role.";
+    if (!drinkA && !drinkN && !sugA() && !sugN()) return "Vote for a drink or suggest one.";
+  }
+  return "";
+}
+function update(){
+  $("err").textContent = "";
+  $("cta").href = "https://wa.me/" + PARTY.whatsapp + "?text=" + encodeURIComponent(message());
+}
+update();
+
+$("cta").addEventListener("click", e => {
+  const p = problem();
+  if (p){ e.preventDefault(); $("err").textContent = p; return; }
+  showCard();
+});
+
+function showCard(){
+  const name = $("guestName").value.trim();
+  const out = coming === "Iss baar nahi";
+  $("yInitial").textContent = name.charAt(0).toLowerCase();
+  $("yRoleLabel").textContent = out ? "This time" : "Crew role";
+  $("yRole").textContent = out ? "Sitting this hand out" : role;
+  $("yLine").textContent = out ? "We'll miss you. Agli baar pakka."
+    : coming === "Shayad" ? "Half dealt in. Confirm soon, " + name + "."
+    : "Dealt in. Iss Diwali, taash khulega.";
+  $("picNudge").hidden = out;
+  $("msgText").textContent = message();
+  $("yours").hidden = false;
+  setTimeout(() => $("yours").scrollIntoView({behavior:"smooth", block:"center"}), 300);
+}
+
+$("copyBtn").addEventListener("click", () => {
+  const t = message();
+  const sel = () => { const r = document.createRange(); r.selectNodeContents($("msgText")); const s = getSelection(); s.removeAllRanges(); s.addRange(r); };
+  try {
+    navigator.clipboard.writeText(t).then(() => { $("copyBtn").textContent = "Copied"; }, () => { sel(); $("copyBtn").textContent = "Selected. Copy it manually"; });
+  } catch(_) { sel(); }
+});
+</script>
+
+<script>
+/* Marigold toran with twinkling fairy lights */
+(function(){
+  const c = document.getElementById("toran");
+  if (!c || !c.getContext) return;
+  const ctx = c.getContext("2d");
+  const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const H = 150;
+  let W = 0, dpr = 1, bulbs = [], garland = null;
+
+  function bead(g, x, y, r, yellow){
+    const grd = g.createRadialGradient(x - r*.3, y - r*.3, r*.1, x, y, r);
+    if (yellow){ grd.addColorStop(0,"#fff4a8"); grd.addColorStop(.5,"#ffd21f"); grd.addColorStop(1,"#d99100"); }
+    else       { grd.addColorStop(0,"#ffd27a"); grd.addColorStop(.5,"#ff8a00"); grd.addColorStop(1,"#b84800"); }
+    g.fillStyle = grd; g.beginPath(); g.arc(x, y, r, 0, Math.PI*2); g.fill();
+    g.strokeStyle = "rgba(110,35,0,.35)"; g.lineWidth = .8;
+    for (let k = 0; k < 5; k++){
+      const a = k*1.26 + x*.37;
+      g.beginPath(); g.arc(x + Math.cos(a)*r*.45, y + Math.sin(a)*r*.45, r*.38, a, a + 2.1); g.stroke();
+    }
+  }
+  function leaf(g, x, y, ang, len){
+    g.save(); g.translate(x, y); g.rotate(ang);
+    g.fillStyle = "#3f7d2a"; g.beginPath();
+    g.moveTo(0,0); g.quadraticCurveTo(len*.5, -len*.32, len, 0); g.quadraticCurveTo(len*.5, len*.32, 0, 0); g.fill();
+    g.strokeStyle = "rgba(200,240,150,.5)"; g.lineWidth = .8; g.beginPath(); g.moveTo(0,0); g.lineTo(len*.9,0); g.stroke();
+    g.restore();
+  }
+  const quad = (p0, p1, p2, t) => (1-t)*(1-t)*p0 + 2*(1-t)*t*p1 + t*t*p2;
+
+  function layout(){
+    W = c.clientWidth; dpr = Math.min(window.devicePixelRatio || 1, 2);
+    c.width = W*dpr; c.height = H*dpr;
+    const n = Math.max(4, Math.round(W/95)), sp = W/n;
+    const off = document.createElement("canvas"); off.width = c.width; off.height = c.height;
+    const g = off.getContext("2d"); g.scale(dpr, dpr);
+
+    // fairy-light wire positions (drawn per frame)
+    bulbs = [];
+    for (let i = 0; i < n; i++){
+      const x0 = i*sp, x1 = (i+1)*sp, cy = 14 + 2*62;
+      const steps = Math.ceil(sp*1.3/17);
+      for (let s = 0; s <= steps; s++){
+        const t = s/steps;
+        bulbs.push({x: quad(x0,(x0+x1)/2,x1,t), y: quad(14,cy,14,t), ph: Math.random()*6.28, sp: .6 + Math.random()*.9});
+      }
+    }
+    // swags
+    for (let i = 0; i < n; i++){
+      const x0 = i*sp, x1 = (i+1)*sp, cy = 14 + 2*34;
+      const steps = Math.ceil(sp*1.12/11);
+      for (let s = 0; s <= steps; s++){
+        const t = s/steps;
+        bead(g, quad(x0,(x0+x1)/2,x1,t), quad(14,cy,14,t), 7, s % 2 === 0);
+      }
+    }
+    // hanging strands
+    for (let i = 1; i < n; i++){
+      const x = i*sp, len = i % 2 ? 112 : 84;
+      for (let y = 22, k = 0; y < len; y += 12, k++) bead(g, x, y, 6.5, k % 2 === 1);
+      leaf(g, x, len + 2, Math.PI/2 - .25, 16);
+      leaf(g, x, len + 2, Math.PI/2 + .25, 16);
+    }
+    // top rope of marigolds with mango leaves
+    for (let x = 0, k = 0; x <= W + 8; x += 12, k++) bead(g, x, 8, 8, k % 2 === 0);
+    for (let i = 0; i <= n; i++){ leaf(g, i*sp, 12, Math.PI/2 - .7, 18); leaf(g, i*sp, 12, Math.PI/2 + .7, 18); }
+    garland = off;
+  }
+
+  function draw(t){
+    ctx.setTransform(dpr,0,0,dpr,0,0);
+    ctx.clearRect(0, 0, W, H);
+    ctx.strokeStyle = "rgba(120,80,20,.8)"; ctx.lineWidth = 1;
+    ctx.beginPath();
+    bulbs.forEach((b, i) => i ? ctx.lineTo(b.x, b.y) : ctx.moveTo(b.x, b.y));
+    ctx.stroke();
+    bulbs.forEach(b => {
+      const a = reduce ? .9 : .45 + .55*Math.abs(Math.sin(t/700*b.sp + b.ph));
+      const glow = ctx.createRadialGradient(b.x, b.y, 0, b.x, b.y, 9);
+      glow.addColorStop(0, "rgba(255,210,90," + (.7*a) + ")"); glow.addColorStop(1, "rgba(255,180,40,0)");
+      ctx.fillStyle = glow; ctx.beginPath(); ctx.arc(b.x, b.y, 9, 0, Math.PI*2); ctx.fill();
+      ctx.fillStyle = "rgba(255,246,200," + (.5 + .5*a) + ")"; ctx.beginPath(); ctx.arc(b.x, b.y, 2.2, 0, Math.PI*2); ctx.fill();
+    });
+    ctx.setTransform(1,0,0,1,0,0);
+    ctx.drawImage(garland, 0, 0);
+  }
+
+  let last = 0;
+  function loop(t){ if (t - last > 60){ draw(t); last = t; } requestAnimationFrame(loop); }
+  layout(); draw(0);
+  if (!reduce) requestAnimationFrame(loop);
+  let rt; addEventListener("resize", () => { clearTimeout(rt); rt = setTimeout(() => { layout(); draw(performance.now()); }, 120); });
+})();
+</script>
+
+</body></html>
